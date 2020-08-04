@@ -12,11 +12,13 @@ jobs:
 
     - name: install dependencies
       run: |
-        apt-get install -y libevent-dev ncurses-dev
+        sudo apt-get install -y libevent-dev ncurses-dev
 
     - name: get tmux
       run: |
         curl -SL https://github.com/tmux/tmux/releases/download/3.0/tmux-3.0.tar.gz | tar -xzC .
         cd tmux-3.0
+        ./configure --enable-static
+        make -j$(nproc)
 
 
