@@ -16,8 +16,8 @@ jobs:
 
     - name: build tmux
       run: |
-        curl -SL https://github.com/tmux/tmux/releases/download/3.0/tmux-3.0.tar.gz | tar -xzC .
-        cd tmux-3.0
+        curl -SL https://github.com/tmux/tmux/releases/download/3.0/tmux-3.0.tar.gz | tar --strip-components=1 -xzC src
+        cd src
         ./configure --enable-static
         make -j$(nproc)
         ls
@@ -25,6 +25,6 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: tmux-binary
-        path: tmux
+        path: src/tmux
 
 
