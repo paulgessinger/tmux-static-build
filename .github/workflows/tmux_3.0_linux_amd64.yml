@@ -1,0 +1,22 @@
+name: tmux_3.0_linux_amd64
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: install dependencies
+      run: |
+        apt-get install -y libevent-dev ncurses-dev
+
+    - name: get tmux
+      run: |
+        curl -SL https://github.com/tmux/tmux/releases/download/3.0/tmux-3.0.tar.gz | tar -xzC .
+        cd tmux-3.0
+
+
